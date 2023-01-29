@@ -1,0 +1,18 @@
+package Aula44Exercicio01;
+
+public class Piramide extends Figura3D implements DimensaoSuperficial, DimensaoVolumetrica {
+
+	private double lado;
+	private double altura;
+
+	@Override
+	public double calcularArea() {
+		return lado * lado;
+	}
+	
+	@Override
+	public double calcularVolume(double altura, double largura, double comprimento) {
+		return altura * largura * comprimento;
+	}
+
+}

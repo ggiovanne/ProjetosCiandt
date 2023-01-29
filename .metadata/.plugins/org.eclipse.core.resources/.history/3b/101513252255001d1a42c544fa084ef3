@@ -1,0 +1,16 @@
+package com.people.bootcamp.service;
+
+import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.BeforeEach;
+import com.people.bootcamp.repository.TrailRepository;
+
+public class TrailServiceTest {
+
+	TrailRepository trailRepository = mock(TrailRepository.class);
+	TrailService trailService;
+	
+	@BeforeEach
+	public void init() {
+		this.trailService = new TrailService(trailRepository);
+	}
+}

@@ -1,0 +1,375 @@
+package extruturaComposta;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Programa {
+	private static Scanner scanner;
+
+	public static ArrayList<Luta> lutasAgendadas = new ArrayList<Luta>();
+
+	public static ArrayList<Lutador> arrayLutadores = new ArrayList<Lutador>();
+
+	public static ArrayList<Juiz> juizes = new ArrayList<Juiz>();
+
+	public static ArrayList<Juiz> juizesCancelados = new ArrayList<Juiz>();
+
+	public static void main(String[] args) {
+		scanner = new Scanner(System.in);
+		// .useDelimiter("\n")
+
+		Lutador prettyBoy = new Lutador("Pretty Boy", "França", 31, 1.75f, 68.9f, 11, 2, 1, 0);
+		Lutador putscript = new Lutador("Putscript", "Brasil", 29, 1.68f, 57.8f, 14, 2, 3, 0);
+		Lutador snapshadow = new Lutador("Snapshadow", "EUA", 35, 1.65f, 80.9f, 12, 2, 1, 0);
+		Lutador deadCode = new Lutador("Dead Code", "Australia", 28, 1.93f, 81.6f, 13, 0, 2, 0);
+		Lutador ufoCobol = new Lutador("UFOCobol", "Brasil", 37, 1.70f, 119.3f, 5, 4, 3, 0);
+		Lutador nerdaart = new Lutador("Nerdaart", "EUA", 30, 1.81f, 105.7f, 12, 2, 4, 0);
+
+		Juiz juiz1 = new Juiz("Reinaldo", "Brasil", 45, 0, 15, 723);
+		Juiz juiz2 = new Juiz("Jose", "Brasil", 55, 0, 15, 723);
+		Juiz juiz3 = new Juiz("Caju", "Brasil", 34, 0, 15, 723);
+		Juiz juiz4 = new Juiz("Sonik", "Brasil", 45, 0, 15, 450);
+		Juiz juiz5 = new Juiz("Cesar", "Brasil", 45, 0, 15, 1400);
+		Juiz juiz6 = new Juiz("Kuririn", "Brasil", 53, 0, 15, 1200);
+		Juiz juiz7 = new Juiz("Freeza", "Brasil", 30, 0, 15, 300);
+		Juiz juiz8 = new Juiz("Mario", "Brasil", 43, 0, 15, 703);
+		Juiz juiz9 = new Juiz("Cassimiro", "Brasil", 65, 0, 15, 1723);
+		Juiz juiz10 = new Juiz("Cabrito", "Brasil", 25, 0, 15, 123);
+
+		arrayLutadores.add(prettyBoy);
+		arrayLutadores.add(putscript);
+		arrayLutadores.add(snapshadow);
+		arrayLutadores.add(deadCode);
+		arrayLutadores.add(ufoCobol);
+		arrayLutadores.add(nerdaart);
+
+		juizes.add(juiz1);
+		juizes.add(juiz2);
+		juizes.add(juiz3);
+		juizes.add(juiz4);
+		juizes.add(juiz5);
+		juizes.add(juiz6);
+		juizes.add(juiz7);
+		juizes.add(juiz8);
+		juizes.add(juiz9);
+		juizes.add(juiz10);
+
+		int ler = 0;
+		do {
+			ler = gerarMenuPrincipal();
+
+			switch (ler) {
+			case 1:
+				Lutador lutadorSelecionado = selecionarLutador(arrayLutadores);
+				if (lutadorSelecionado != null) {
+					lutadorSelecionado.status();
+				}
+				break;
+			case 2:
+
+				adicionarLutadores();
+				break;
+			case 3:
+				juizes();
+				break;
+			case 4:
+				agendarLutas(arrayLutadores);
+				break;
+			case 5:
+				consultarAgendamentos();
+				break;
+			case 6:
+				realizarLutas();
+				break;
+			}
+		} while (ler != 7);
+
+	}
+
+	private static int menuJuizes() {
+		System.out.println("-----------------------------------");
+		System.out.println("             MENU DE JUÍZ          ");
+		System.out.println("-----------------------------------");
+		System.out.println("[1] Cadastrar novo juíz");
+		System.out.println("[2] Remover juíz cadastrado");
+		System.out.println("[3] Consultar dados do juíz");
+		System.out.println("[4]- Sair");
+		return scanner.nextInt();
+
+	}
+
+	private static void juizes() {
+		int ler;
+		do {
+			ler = menuJuizes();
+
+			switch (ler) {
+			case 1:
+				cadastrarNovoJuiz();
+				break;
+			case 2:
+				removerJuizCadastrado();
+				break;
+			case 3:
+				consultarDadosJuiz();
+				break;
+			}
+		} while (ler != 4);
+	}
+
+	private static void consultarDadosJuiz() {
+		System.out.println("-----------------------------------");
+		System.out.println("   QUAL JUIZ DESEJA VER OS DADOS   ");
+		System.out.println("-----------------------------------");
+
+		for (int i = 0; i < juizes.size(); i++) {
+			System.out.println("[" + (i + 1) + "]" + juizes.get(i).getNome());
+		}
+		int resposta = scanner.nextInt();
+
+		Juiz juizSelecionado = juizes.get(resposta - 1);
+
+		System.out.println("-----------------------------------");
+		System.out.println("Exibindo dados do juiz " + juizSelecionado.getNome());
+		System.out.println("-----------------------------------");
+		System.out.println("NACIONALIDADE: " + juizSelecionado.getNacionalidade());
+		System.out.println("IDADE: " + juizSelecionado.getIdade());
+		System.out.println("COMISSÕES: " + juizSelecionado.getComissao());
+		System.out.println("ANOS DE EXPERIÊNCIA: " + juizSelecionado.getAnosExperiencia());
+		System.out.println("LUTAS REALIZADAS: " + juizSelecionado.getLutasRealizadasJuiz().size());
+		System.out.println("MEDIA DE COMISSÕES GANHOS: " + juizSelecionado.mediaComissao());
+		System.out.println("-----------------------------------");
+		System.out.println("Exibindo lutas realizadas pelo juíz " + juizSelecionado.getNome());
+		System.out.println("-----------------------------------");
+
+		for (int i = 0; i < juizSelecionado.getLutasRealizadasJuiz().size(); i++) {
+			Luta lutas = juizSelecionado.getLutasRealizadasJuiz().get(i);
+
+			lutas.getDesafiado().status();
+			lutas.getDesafiante().status();
+			System.out.println("PRÊMIO DA LUTA: " + lutas.getPremioLuta());
+			System.out.println("COMISSÃO DO JUIZ: " + lutas.getComissaoJuiz());
+			System.out.println("-----------------------------------");
+		}
+
+	}
+
+	private static void cadastrarNovoJuiz() {
+
+		System.out.println("Informe o nome do juiz: ");
+		String nomeJuiz = scanner.next();
+
+		System.out.println("Informe o país do juiz: ");
+		String nacionalidade = scanner.next();
+
+		System.out.println("Informe a idade do juiz: ");
+		int idade = scanner.nextInt();
+
+		System.out.println("Informe as comissões do juiz: ");
+		double comissao = scanner.nextFloat();
+
+		System.out.println("Informe os anos de experiência do juíz: ");
+		int anosExperiencia = scanner.nextInt();
+
+		System.out.println("Informe a quantidade de lutas realizadas pelo juíz: ");
+		int lutasRealizadas = scanner.nextInt();
+
+		Juiz novoJuiz = new Juiz(nomeJuiz, nacionalidade, idade, comissao, anosExperiencia, lutasRealizadas);
+
+		juizes.add(novoJuiz);
+	}
+
+	private static void removerJuizCadastrado() {
+		System.out.println("-----------------------------------");
+		System.out.println("ESCOLHA UM JUIZ QUE DESEJA REMOVER ");
+		System.out.println("-----------------------------------");
+
+		for (int i = 0; i < juizes.size(); i++) {
+			System.out.println("[" + (i + 1) + "]" + juizes.get(i).getNome());
+		}
+		int resposta = scanner.nextInt();
+		
+//		if (lutasAgendadas)
+		juizesCancelados.add(juizes.get(resposta-1));
+		juizes.remove(resposta - 1);
+
+	}
+
+	private static void gerarMenuJuizes(ArrayList<Juiz> juiz) {
+
+		System.out.println("-----------------------------------");
+		System.out.println("           ESCOLHA UM JUIZ         ");
+		System.out.println("-----------------------------------");
+
+		for (int i = 0; i < juizes.size(); i++) {
+
+			System.out.println("[" + (i + 1) + "]" + juizes.get(i).getNome());
+		}
+
+	}
+
+	private static int gerarMenuPrincipal() {
+		System.out.println("MENU PRINCIPAL");
+		System.out.println("[1] Consultar dados dos lutadores");
+		System.out.println("[2] Adicionar lutadores");
+		System.out.println("[3] Juízes");
+		System.out.println("[4] Agendar lutas");
+		System.out.println("[5] Consultar agendamentos");
+		System.out.println("[6] Realizar lutas");
+		System.out.println("[7]- Sair");
+		return scanner.nextInt();
+	}
+
+	public static void adicionarLutadores() {
+		String nomeLut;
+		String pais;
+		int idade;
+		float altura;
+		float peso;
+
+		System.out.println("Informe o nome do lutador: ");
+		nomeLut = scanner.next();
+
+		System.out.println("Informe o país do lutador: ");
+		pais = scanner.next();
+
+		System.out.println("Informe a idade do lutador: ");
+		idade = scanner.nextInt();
+
+		System.out.println("Informe a altura do lutador: ");
+		altura = scanner.nextFloat();
+
+		System.out.println("Informe o peso do lutador: ");
+		peso = scanner.nextFloat();
+
+		Lutador novoLutador = new Lutador(nomeLut, pais, idade, altura, peso, 0, 0, 0, 0);
+
+		arrayLutadores.add(novoLutador);
+	}
+
+	public static void consultarAgendamentos() {
+		System.out.println("--------------------------------");
+		System.out.println("         LUTAS AGENDADAS        ");
+		System.out.println("--------------------------------");
+		for (int i = 0; i < lutasAgendadas.size(); i++) {
+			Luta luta = lutasAgendadas.get(i);
+			if (luta != null) {
+				System.out.println(
+						(i + 1) + "º " + luta.getDesafiante().getNome() + " X " + luta.getDesafiado().getNome());
+				System.out.println("--------------------------------");
+			}
+		}
+//		System.out.println("Confira  agora as lutas já agendadas: ");
+//		for (int i = 0; i < lutasAgendadas.size(); i++) {
+//			Luta lutaGuardada = lutasAgendadas.get(i);
+//			if (lutaGuardada != null) {
+//				System.out.println((i + 1) + "a luta");
+//				System.out.println("Desafiante : " + lutaGuardada.getDesafiante().getNome());
+//				System.out.println("Desafiado : " + lutaGuardada.getDesafiado().getNome());
+//			}
+//		}
+	}
+
+	private static void listarLutadores(ArrayList<Lutador> lutador) {
+		int i;
+		for (i = 0; i < arrayLutadores.size(); i++) {
+			System.out.println("[" + (i + 1) + "]" + lutador.get(i).getNome());
+		}
+		System.out.println("[" + (i + 1) + "] Sair");
+
+	}
+
+	private static void agendarLutas(ArrayList<Lutador> lutador) {
+//		System.out.println("Confira  agora as lutas já agendadas: ");
+//		for (int i = 0; i < lutasAgendadas.size(); i++) {
+//			Luta lutaGuardada = lutasAgendadas.get(i);
+//			if (lutaGuardada != null) {
+//				System.out.println((i + 1) + "a luta");
+//				System.out.println("Desafiante : " + lutaGuardada.getDesafiante().getNome());
+//				System.out.println("Desafiado : " + lutaGuardada.getDesafiado().getNome());
+		// }
+//		}
+		Lutador lutadorDesafiante, lutadorDesafiado;
+		System.out.println("Bem-vindo ao agendamento de lutas!");
+		System.out.println("Escolha o desafiante: ");
+		lutadorDesafiante = selecionarLutador(lutador);
+		if (lutadorDesafiante != null) {
+			System.out.println("Escolha o desafiado: ");
+			lutadorDesafiado = selecionarLutador(lutador);
+			if (lutadorDesafiado != null) {
+
+				if (juizes != null) {
+					gerarMenuJuizes(juizes);
+					int resposta = scanner.nextInt();
+
+					Juiz juizselecionado = juizes.get(resposta - 1);
+
+					System.out.println("Qual o valor do prêmio para o ganhador? ");
+					double premio = scanner.nextInt();
+					System.out.println("Qual será a comissão (em %) do juiz? ");
+					double comissao = scanner.nextInt();
+
+					Luta lutaAgendada = new Luta(lutadorDesafiante, lutadorDesafiado, juizselecionado, premio,
+							comissao);
+					lutaAgendada.marcarLuta();
+					lutasAgendadas.add(lutaAgendada);
+
+				} else {
+					System.out.println("A luta não foi marcada pois não temos juízes disponíveis");
+				}
+
+			} else {
+				System.out.println("A luta não foi marcada pois não temos um desafiante");
+			}
+		} else {
+			System.out.println("A luta não foi marcada pois não temos um desafiado");
+		}
+
+//			System.out.println("Juiz escolhido foi " + juizes[(resposta - 1)].getNome());
+//			System.out.println("O prêmio para o vencedor é de: " + premio);
+//			System.out.println("E a comissão para o juiz será de: " + comissao + "%");
+
+	}
+
+	private static void realizarLutas() {
+		boolean lutaEncontrada = false;
+		System.out.println("-------------------------------");
+		System.out.println(lutasAgendadas.size());
+		for (int i = 0; i < lutasAgendadas.size(); i++) {
+			Luta lutaAgendada = lutasAgendadas.get(i);
+
+			if (lutaAgendada != null) {
+				lutaAgendada.lutar();
+				lutaEncontrada = true;
+			}
+		}
+		if (!lutaEncontrada) {
+			System.out.println("Não há lutas agendadas.");
+		} else {
+//			lutasAgendadas = lutasAgendadas.get(i);
+		}
+	}
+
+	private static Lutador selecionarLutador(ArrayList<Lutador> lutador) {
+		int opcaoLutador;
+		Lutador lutadorSelecionado = null;
+		do {
+			listarLutadores(lutador);
+
+			System.out.println("De qual lutador você deseja ver os atributos?");
+			opcaoLutador = scanner.nextInt();
+
+			if (opcaoLutador >= 1 && opcaoLutador <= lutador.size()) {
+				System.out.println("Você escolheu o lutador: " + lutador.get(opcaoLutador - 1).getNome());
+				lutadorSelecionado = lutador.get(opcaoLutador - 1);
+				break;
+			} else if (opcaoLutador == (lutador.size() + 1)) {
+				System.out.println("Finalizando");
+			} else {
+				System.out.println("Opção Inválida!!");
+			}
+
+		} while (opcaoLutador != lutador.size() + 1);
+		return lutadorSelecionado;
+	}
+}

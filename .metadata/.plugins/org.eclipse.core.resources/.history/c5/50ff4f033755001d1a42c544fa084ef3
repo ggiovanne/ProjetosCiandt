@@ -1,0 +1,90 @@
+package com.people.bootcamp.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import com.people.bootcamp.repository.TrailRepository;
+import com.people.bootcamp.repository.model.TrailModel;
+import com.people.bootcamp.service.domain.Content;
+import com.people.bootcamp.service.domain.Trail;
+
+public class TrailServiceTest {
+
+	TrailRepository trailRepository = mock(TrailRepository.class);
+	TrailService trailService;
+	
+	@BeforeEach
+	public void init() {
+		this.trailService = new TrailService(trailRepository);
+	}
+	
+	@Test
+	void returnTrailWhenIdExistsInRepository() {
+		final Long id = Long.valueOf(1);
+		when(trailRepository.findById(id)).
+		thenReturn(Optional.ofNullable(TrailModel.builder().id(id).build()));
+		Optional<Trail> trail = trailService.findById(id);
+		assertTrue(trail.isPresent());
+		assertEquals(id, trail.get().getId());
+    }
+	
+	@Test
+	void returnsEmptyWhenIdDoesNotExistInRepository() {
+		final Long id = Long.valueOf(1);
+		Optional<Trail> trail = trailService.findById(id);
+		verify(trailRepository).findById(id);
+		assertFalse(trail.isPresent());	
+	}
+	
+//	@Test
+//	void returnsEmptyWhenListTrailsDoesNotExistInRepository() {
+//		
+//	}
+//	
+	@Test
+	void returnListTrailWhenIdExistsInRepository() {
+		List<TrailModel> trail = trail();
+		when(trailRepository.findAll()).thenReturn(trail);
+		assertFalse(trail.isEmpty());
+		assertTrue(trail.size() == 3);
+		//assertTrue(trail.get(0).getId() == 1);
+		}
+		
+//		when(lutadorRepository.findAll()).thenReturn(todosLutadores);
+//
+//		Optional<List<Lutador>> listLutadoresRetornados = lutaService.findAll();
+//		assertTrue(listLutadoresRetornados.isPresent());
+//		assertTrue(listLutadoresRetornados.get().size() == 2);
+//		for (LutadorModel lutadorModel : todosLutadores) {
+//			if (lutadorModel.getId() == 2) {
+//				assertTrue(lutadorModel.getNome()
+//		.equals("Jaqueline"), "Lutador de id 2 deve se chamar Jaqueline");
+//	}
+	
+	private List<TrailModel> trail (){
+		List<TrailModel> trail = new ArrayList<TrailModel>();
+		List<Content> contents = new ArrayList<Content>();
+		TrailModel trail1 = new TrailModel ();
+		trail1.setId(Long.valueOf(1));
+		TrailModel trail2 = new TrailModel ();
+		trail1.setId(Long.valueOf(2));
+		TrailModel trail3 = new TrailModel ();
+		trail1.setId(Long.valueOf(3));
+		trail.add(trail1);
+		trail.add(trail2);
+		trail.add(trail3);
+		return trail;
+		
+		
+	}
+	
+	
+}

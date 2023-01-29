@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\ggiovanne\Git\Sprint1\bootcamp-pcds-backend-mvc-maven"/>
+			<item value="C:\Users\ggiovanne\eclipse-workspace\2066-java-testes-mock-projeto_inicial"/>
+			<item value="C:\Users\ggiovanne\Git\bootcamp-pcds-backend-mvc-maven"/>
+			<item value="C:\Users\ggiovanne\Downloads\forum\forum"/>
+			<item value="C:\Users\ggiovanne\Git"/>
+			<item value="C:\Users\ggiovanne\Git\bootcamp-pcds-backend-mvc-maven\src"/>
+			<item value="C:\Users\ggiovanne\Downloads\forum"/>
+			<item value="C:\Users\ggiovanne\Downloads\forum (1)"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

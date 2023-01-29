@@ -1,0 +1,51 @@
+package aulaslogicas.exercicio06;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MenuDepartamento {
+
+	private int EscolhaOpcao;
+	private ArrayList<Departamentos> departamentos = new ArrayList<Departamentos>();
+	private Scanner scanner;
+
+	public MenuDepartamento(Scanner sc) {
+
+		this.scanner = sc;
+
+	}
+
+	public void criarDepartamento() {
+
+		System.out.println("Seja bem-vinda(o), ao menu departamentos!");
+
+		do {
+
+			System.out.println("Por favor, digite uma opção:");
+			System.out.println("1- criar departamento, 0- retornar ao menu principal.");
+
+			EscolhaOpcao = scanner.nextInt();
+
+			if(EscolhaOpcao == 1) {
+
+				System.out.println("Digite o nome do departamento:");
+				Departamentos departamento = new Departamentos("");
+				departamento.setNomeDoDepartamento(scanner.next());
+				departamentos.add(departamento);
+
+				continue;
+
+			}
+
+			if(EscolhaOpcao == 0) {
+
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.criar();
+
+			}
+
+		} while(EscolhaOpcao <= 1 && EscolhaOpcao >= 0);
+
+	}
+
+}

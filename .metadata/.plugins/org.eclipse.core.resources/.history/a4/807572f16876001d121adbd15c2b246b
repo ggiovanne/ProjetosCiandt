@@ -1,0 +1,159 @@
+package aulaslogicas.exercicio06;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Programa2 {
+
+	private static Scanner sc = new Scanner(System.in);
+	private static ArrayList<Departamentos> departamentos = new ArrayList<Departamentos>();
+	private static List<Empresa> empresas = new ArrayList<Empresa>();
+
+	public static void criarMenuPrincipal() {
+
+		int escolhaDoUsuario;
+
+		System.out.println("Seja bem-vinda(o), ao menu principal!");
+
+		do {
+			System.out.println("Por favor, digite uma opção:");
+			System.out.println("1- empresas, 2- departamentos, 3- funcionários, 0- sair.");
+
+			escolhaDoUsuario = sc.nextInt();
+
+			if (escolhaDoUsuario == 1) {
+
+				criarMenuEmpresa();
+
+			} else if (escolhaDoUsuario == 2) {
+
+				criarMenuDepartamento();
+
+			}
+
+		} while (escolhaDoUsuario != 0);
+
+	}
+
+	public static void criarMenuEmpresa() {
+
+		int escolhaDoUsuario;
+		int escolhaEmpresa = 0;
+		ArrayList<Departamentos> preLista = new ArrayList<>();
+
+		System.out.println("Bem-vinda(o) ao menu empresas!");
+
+		do {
+
+			System.out.println("Por favor, digite uma opção: ");
+			System.out.println("1- criar empresa, 2- vincular departamento, 0- voltar ao menu principal.");
+
+			escolhaDoUsuario = sc.nextInt();
+
+			if (escolhaDoUsuario == 1) {
+
+				System.out.println("Digite o nome da empresa: ");
+				String nomeEmpresa = sc.next();
+				System.out.println("Digite agora o CNPJ: ");
+				String cnpj = sc.next();
+				Empresa empresa = new Empresa(nomeEmpresa, cnpj);
+				empresas.add(empresa);
+
+			} else if (escolhaDoUsuario == 2) {
+
+				System.out.println("Escolha à qual empresa deseja vincular o departamento: ");
+
+				for (int i = 0; i < empresas.size(); i++) {
+
+					System.out.println((i + 1) + "-" + empresas.get(i).getNome());
+
+				}
+
+				escolhaEmpresa = sc.nextInt();
+
+				int escolhaDepartamento;
+				int respostaContinuar;
+				do {
+					System.out.println("Agora, escolha o departamento que deseja vincular à empresa "
+							+ empresas.get(escolhaEmpresa - 1).getNome());
+					for (int i = 0; i < departamentos.size(); i++) {
+
+						System.out.println((i + 1) + " - " + departamentos.get(i).getNomeDoDepartamento());
+
+					}
+					escolhaDepartamento = sc.nextInt();
+					preLista.add(departamentos.get(escolhaDepartamento - 1));
+
+					System.out.println("Deseja adicionar mais algum departamento na empresa "
+							+ empresas.get(escolhaEmpresa - 1).getNome());
+					System.out.println("[1] SIM");
+					System.out.println("[0] NAO");
+					respostaContinuar = sc.nextInt();
+
+				} while (respostaContinuar != 0);
+
+				if (escolhaDoUsuario != 0) {
+					for (int i = 0; i < empresas.get(escolhaEmpresa - 1).getDepartamentos().size(); i++) {
+						System.out.println(preLista.get(i).getNomeDoDepartamento());
+					}
+
+					System.out.println("Está tudo OK com os departamentos adicionados?");
+					System.out.println("Digite 1 para sim, 2 para não.");
+					int escolhaOpcao = sc.nextInt();
+					if (escolhaOpcao == 1) {
+						for (int i = 0; i < preLista.size(); i++) {
+							empresas.get(escolhaEmpresa - 1).adicionarDepartamento(preLista.get(i));
+						}
+					} else if (escolhaOpcao == 2) {
+						criarMenuEmpresa();
+					} else {
+						System.out.println("Opção inválida!, operação cancelada.");
+					}
+				}
+
+			}
+
+		} while (escolhaDoUsuario != 0);
+
+	}
+
+	public static void criarMenuDepartamento() {
+
+		int escolhaDoUsuario;
+
+		System.out.println("Seja bem-vinda(o), ao menu departamentos!");
+
+		do {
+
+			System.out.println("Por favor, digite uma opção:");
+			System.out.println("1- criar departamento, 0- retornar ao menu principal.");
+
+			escolhaDoUsuario = sc.nextInt();
+
+			if (escolhaDoUsuario == 1) {
+
+				System.out.println("Digite o nome do departamento:");
+				Departamentos departamento = new Departamentos("");
+				departamento.setNomeDoDepartamento(sc.next());
+				departamentos.add(departamento);
+
+			}
+
+			if (escolhaDoUsuario == 0) {
+
+				criarMenuPrincipal();
+
+			}
+
+		} while (escolhaDoUsuario != 0);
+
+	}
+
+	public static void main(String[] args) {
+
+		criarMenuPrincipal();
+
+	}
+
+}

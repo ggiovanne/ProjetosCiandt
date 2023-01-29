@@ -1,0 +1,9 @@
+package Aula44Exercicio01;
+
+public abstract class Figura3D extends FiguraGeometrica implements DimensaoVolumetrica {
+
+	@Override
+	public abstract double calcularVolume();
+	
+
+}

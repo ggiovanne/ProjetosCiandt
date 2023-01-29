@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=2066-java-testes-mock-projeto_inicial/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.alura.leilao.service{GeradorDePagamento.java[GeradorDePagamento" modifiers="1" timestamp="1665429289396"/>
+    <typeInfo handle="=2066-java-testes-mock-projeto_inicial/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.alura.leilao.model{Leilao.java[Leilao" modifiers="1" timestamp="1607384608000"/>
+    <typeInfo handle="=2066-java-testes-mock-projeto_inicial/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.com.alura.leilao.dao{LeilaoDao.java[LeilaoDao" modifiers="1" timestamp="1607384608000"/>
+    <typeInfo handle="=2066-java-testes-mock-projeto_inicial/C:\/Users\/ggiovanne\/.m2\/repository\/org\/hibernate\/hibernate-core\/5.4.21.Final\/hibernate-core-5.4.21.Final.jar=/maven.pomderived=/true=/=/maven.groupId=/org.hibernate=/=/maven.artifactId=/hibernate-core=/=/maven.version=/5.4.21.Final=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.hibernate.engine.spi(Mapping.class[Mapping" modifiers="1537" timestamp="1664988128858"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.service.domain{TrailModelMapper.java[TrailModelMapper" modifiers="513" timestamp="1666696434380"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.controller.dto{TrailDto.java[TrailDto" modifiers="1" timestamp="1668716267124"/>
+    <typeInfo handle="=bootcamp/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;com.people.bootcamp.service{ContentServiceTest.java[ContentServiceTest" modifiers="1" timestamp="1667928020212"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.service.domain{Content.java[Content" modifiers="1" timestamp="1668684624105"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.repository.model{ContentModel.java[ContentModel" modifiers="1" timestamp="1667935404253"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.controller{ContentController.java[ContentController" modifiers="1" timestamp="1667824472085"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.repository{ContentRepository.java[ContentRepository" modifiers="513" timestamp="1666205815898"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.repository{UserContentRepository.java[UserContentRepository" modifiers="513" timestamp="1668684624082"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.repository.model{UserContentModel.java[UserContentModel" modifiers="1" timestamp="1667824472110"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.controller{TrailController.java[TrailController" modifiers="1" timestamp="1668684624058"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.service{TrailService.java[TrailService" modifiers="1" timestamp="1668704099539"/>
+    <typeInfo handle="=bootcamp/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;com.people.bootcamp.service{TrailControllerTest.java[TrailControllerTest" modifiers="1" timestamp="1668966989757"/>
+    <typeInfo handle="=bootcamp/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.people.bootcamp.service{ContentService.java[ContentService" modifiers="1" timestamp="1668684624089"/>
+</typeInfoHistroy>

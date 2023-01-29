@@ -1,0 +1,21 @@
+package Aula44Exercicio01;
+
+public class Triangulo extends Figura2D implements  DimensaoSuperficial, DimensaoVolumetrica{
+
+	private double raio;
+	private double lado2;
+	
+
+	@Override
+	public double calcularArea(double lado1, double lado2) {
+		return lado1 * lado2;
+	}
+
+
+	@Override
+	public double calcularVolume(double altura, double largura, double comprimento) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

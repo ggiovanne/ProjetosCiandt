@@ -1,0 +1,5 @@
+
+public class TipoEmbalagem {
+	String formato;
+	String fabricante;
+}

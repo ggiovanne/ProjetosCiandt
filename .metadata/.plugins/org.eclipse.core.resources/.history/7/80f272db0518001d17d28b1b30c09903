@@ -1,0 +1,13 @@
+package extruturaComposta;
+
+public class Pessoa {
+	private String nome;
+	private String nacionalidade;
+	private int idade;
+	private float altura;
+	private float peso;
+	private Categoria categoria;
+	private int vitoria;
+	private int derrota;
+	private int empate;
+}

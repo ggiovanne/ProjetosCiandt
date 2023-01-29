@@ -1,0 +1,85 @@
+package extruturaComposta;
+
+import java.util.Random;
+
+public class Luta {
+	private Lutador desafiante;
+	private Lutador desafiado;
+	private int rounds;
+	private boolean aprovada;
+
+	public void marcarLuta(Lutador desafiante, Lutador desafiado) {
+		if ((desafiante.getCategoria() == desafiado.getCategoria()) && (desafiante != desafiado)) {
+			System.out.println("Luta marcada!");
+			System.out.println("entre: " + desafiante.getNome() + "e " + desafiado.getNome());
+			this.aprovada = true;
+		} else {
+			System.out.println(" A luta não pode ser marcada. ");
+			this.aprovada = false;
+		}
+	}
+
+	public Lutador getDesafiante() {
+		return desafiante;
+	}
+
+	public void setDesafiante(Lutador desafiante) {
+		this.desafiante = desafiante;
+	}
+
+	public Lutador getDesafiado() {
+		return desafiado;
+	}
+
+	public void setDesafiado(Lutador desafiado) {
+		this.desafiado = desafiado;
+	}
+
+	public int getRounds() {
+		return rounds;
+	}
+
+	public void setRounds(int rounds) {
+		this.rounds = rounds;
+	}
+
+	public boolean isAprovada() {
+		return aprovada;
+	}
+
+	private void setAprovada(boolean aprovada) {
+		this.aprovada = aprovada;
+	}
+
+	public void lutar() {
+		if (this.aprovada) {
+			System.out.println("Apresentamos os lutadores: " + desafiante.getNome() + "e " + desafiado.getNome());
+			System.out.println("No lado esquerdo, temos: ");
+			desafiante.apresentar();
+			System.out.println(" No lado direito, temos: ");
+			desafiado.apresentar();
+			Random random = new Random();
+			int aleatorio = random.ints(0, 2).findFirst().getAsInt();
+			switch (aleatorio) {
+			case 0:
+				System.out.println("Luta empatada");
+				desafiante.empatarLuta();
+				desafiado.empatarLuta();
+				break;
+			case 1:
+				System.out.println("O vencedor é " + desafiante.getNome());
+				desafiante.ganharLuta();
+				desafiado.perderLuta();
+				break;
+			case 2:
+				System.out.println("O vencedor é " + desafiado.getNome());
+				desafiado.ganharLuta();
+				desafiante.perderLuta();
+				break;
+			}
+		} else {
+			System.out.println("Luta não aprovada");
+		}
+	}
+
+}

@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public class AluraArrayList {
+	public static void main(String[] args) {
+		//arrayList é um array dinâmico, permitido ser criado
+		//sem definir quantos elementos ele pode guardar.
+		// pode expandir e diminuir conforme necessita
+		
+		ArrayList nomedoarray = new ArrayList(); 
+		
+		//para varrer o nosso array, podemos usar o for tradicional
+		for (int i=0; i< nomedoarray.size(); i++) {
+			
+		}
+	}
+}

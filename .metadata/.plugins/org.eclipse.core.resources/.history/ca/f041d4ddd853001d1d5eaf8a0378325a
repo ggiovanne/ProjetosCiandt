@@ -1,0 +1,39 @@
+package com.people.bootcamp.service;
+
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Component;
+import com.people.bootcamp.repository.TrailRepository;
+import com.people.bootcamp.repository.model.TrailModel;
+import com.people.bootcamp.service.domain.Trail;
+import com.people.bootcamp.service.domain.TrailModelMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Component
+@RequiredArgsConstructor
+public class TrailService {
+
+	private final TrailRepository trailRepository;
+	public static final String ID_CAN_NOT_BE_NULL = "ID não pode estar vazio";
+
+	public List<Trail> findAll() {
+		return TrailModelMapper.INSTANCE.modelToEntity(trailRepository.findAll());
+	}
+
+	public Optional<Trail> findById(Long id) {
+		if (id == null) {
+			log.error(ID_CAN_NOT_BE_NULL);
+			throw new IllegalArgumentException(ID_CAN_NOT_BE_NULL);
+		}
+		Optional<TrailModel> findById = trailRepository.findById(id);
+		if (findById.isPresent()) {
+			return  Optional.ofNullable(TrailModelMapper.INSTANCE.modelToEntity(findById.get()));
+		} else {
+			return Optional.empty();
+		}
+		
+		
+	}
+}

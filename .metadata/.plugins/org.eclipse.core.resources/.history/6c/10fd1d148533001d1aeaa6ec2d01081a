@@ -1,0 +1,10 @@
+package Aula44Exercicio01;
+
+public class Quadrado extends Figura2D implements DimensaoSuperficial {
+	
+	@Override
+	public double calcularArea(double base, double altura) {
+		return base * altura;
+	}
+
+}

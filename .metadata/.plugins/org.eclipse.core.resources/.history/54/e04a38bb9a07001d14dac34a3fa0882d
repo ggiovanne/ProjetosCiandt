@@ -1,0 +1,29 @@
+
+public class Programa {
+	
+	public static void main(String[] args) {
+		
+		System.out.println(Cafe.getContador());
+		System.out.println(Cafe.getContador());
+		System.out.println(Cafe.getContador());
+		System.out.println(Cafe.getContador());
+		
+		Embalagem embalagemMelita = new Embalagem ();
+		embalagemMelita.fabricante = "Astromex";
+		embalagemMelita.formato = "caixa";
+		
+		TipoGrao graoMelita = new TipoGrao ();
+		graoMelita.classificacao = Classificacao.Gourmet;
+		
+		Cafe cafeMelita = new Cafe ();
+		cafeMelita.nome = "Melita";
+		cafeMelita.vencimento = "20/07/2022";
+		cafeMelita.embalagem = embalagemMelita;
+		
+		System.out.println(cafeMelita.getContador());
+		
+		Cafe cafePilao = new Cafe ();
+		cafePilao.nome = "Pilao";
+		
+	}
+}

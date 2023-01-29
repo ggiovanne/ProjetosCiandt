@@ -1,0 +1,64 @@
+package com.people.bootcamp.controller.dto;
+
+import java.util.List;
+
+import com.people.bootcamp.repository.ContentRepository;
+import com.people.bootcamp.repository.UserContentRepository;
+import com.people.bootcamp.repository.model.UserContentModel;
+import com.people.bootcamp.service.ContentService;
+import com.people.bootcamp.service.domain.Content;
+
+public class ContentDto {
+
+	private Long id;
+	private String contentType;
+	private String contentUrl;
+	private String description;
+	private String imageUrl;
+	private String title;
+	public boolean concluido;
+	private final UserContentRepository userContentRepository = null;
+	private final ContentRepository contentRepository = null;
+	private ContentService contentService = new ContentService(userContentRepository, contentRepository);
+
+	public ContentDto(Content content) {
+		super();
+		this.id = content.getId();
+		this.contentType = content.getType();
+		this.contentUrl = content.getUrl();
+		this.description = content.getDescription();
+		this.imageUrl = content.getImage();
+		this.title = content.getTitle();
+		this.concluido = false;
+		List<UserContentModel> contents = contentService.retornarContents();
+		for (int i = 0; i < contents.size(); i++) {
+			if (contents.get(i).getId().getIdContent() == this.id) {
+				this.concluido = true;
+			}
+		}
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public String getContentUrl() {
+		return contentUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+}

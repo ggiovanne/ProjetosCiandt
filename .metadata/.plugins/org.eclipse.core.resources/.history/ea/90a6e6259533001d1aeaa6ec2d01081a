@@ -1,0 +1,7 @@
+package Aula44Exercicio01;
+
+public abstract class Figura3D extends FiguraGeometrica implements DimensaoSuperficial, DimensaoVolumetrica{
+
+	public abstract double calcularVolume();
+
+}

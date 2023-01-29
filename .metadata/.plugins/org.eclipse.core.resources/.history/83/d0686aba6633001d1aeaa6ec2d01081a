@@ -1,0 +1,13 @@
+package Aula44Exercicio01;
+
+public class Figura2D extends FiguraGeometrica implements DimensaoSuperficial{
+
+	@Override
+	public double calcularArea(double lado1, double lado2) {
+		return lado1 * lado2;
+	}
+
+
+	
+	
+}

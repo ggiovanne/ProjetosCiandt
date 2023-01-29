@@ -1,0 +1,9 @@
+package Aula44Exercicio01;
+
+public class Triangulo extends Figura2D{
+
+	public Triangulo(double lado1, double lado2) {
+		super(lado1, lado2);
+	}
+
+}

@@ -1,0 +1,10 @@
+package Aula44Exercicio01;
+
+public class Circulo extends Figura2D implements  DimensaoSuperficial, DimensaoVolumetrica{
+
+	@Override
+	public double calcularVolume(double altura, double largura, double comprimento) {
+		return 0;
+	} 
+
+}

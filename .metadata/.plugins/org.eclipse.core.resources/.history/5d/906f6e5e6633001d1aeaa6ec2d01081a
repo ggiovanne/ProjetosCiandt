@@ -1,0 +1,6 @@
+package Aula44Exercicio01;
+
+public class Figura3D extends FiguraGeometrica {
+
+
+}

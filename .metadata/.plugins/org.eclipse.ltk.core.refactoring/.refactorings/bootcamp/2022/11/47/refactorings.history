@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;userContent&apos; in &apos;com.people.bootcamp.service.TrailServiceTest.ab()&apos; to &apos;userContents&apos;&#x0D;&#x0A;- Original project: &apos;bootcamp&apos;&#x0D;&#x0A;- Original element: &apos;com.people.bootcamp.service.TrailServiceTest.ab().userContent&apos;&#x0D;&#x0A;- Renamed element: &apos;userContent&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;userContent&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;com.people.bootcamp.service{TrailServiceTest.java[TrailServiceTest~ab@userContent!6133!6203!6156!6166!QList\&lt;QUserContentModel;&gt;;!0!false" name="userContents" references="true" stamp="1668715800677" version="1.0"/>
+</session>

@@ -1,0 +1,187 @@
+package extruturaComposta;
+
+import java.util.Random;
+
+public class Luta {
+	private Lutador desafiante;
+	private Lutador desafiado;
+	private int rounds;
+	private boolean aprovada;
+	private double premioLuta;
+	private double comissaoJuiz;
+	private Juiz juiz;
+	private int expectadores;
+	private boolean considerarExpectadores;
+
+	private static Random random = new Random();
+	
+	public Luta(Lutador desafiante, Lutador desafiado, Juiz juiz) {
+		this.desafiante = desafiante;
+		this.desafiado = desafiado;
+		this.juiz = juiz;
+	}
+
+	public Luta(Lutador desafiante, Lutador desafiado, Juiz juiz, double premioLuta, double comissaoJuiz, boolean considerarExpectadores) {
+		this.desafiante = desafiante;
+		this.desafiado = desafiado;
+		this.juiz = juiz;
+		this.premioLuta = premioLuta;
+		this.comissaoJuiz = comissaoJuiz;
+		this.considerarExpectadores = considerarExpectadores;
+	}
+
+	public void marcarLuta() {
+		if ((desafiante.getCategoria() == desafiado.getCategoria()) && (desafiante != desafiado) && juiz != null) {
+			System.out.println("Luta marcada!");
+			System.out.println(
+					"entre: " + desafiante.getNome() + " e " + desafiado.getNome() + " com o juiz " + juiz.getNome());
+			System.out.println("Assistida por " + expectadores + " expectadores!");
+			this.aprovada = true;
+		} else {
+			System.out.println(" A luta não pode ser marcada. ");
+			this.aprovada = false;
+		}
+	}
+
+	public double calcularJuizExpectadores() {
+		if (considerarExpectadores && expectadores <= 500) {
+			return 100;
+		} else if (considerarExpectadores && expectadores > 500 && expectadores <= 2000) {
+			return 500;
+		} else {
+			return 1000;
+		}
+	}
+
+	public void lutar() {
+		int expectadores = random.ints(1,4000).findFirst().getAsInt();
+		if (this.aprovada) {
+			System.out.println("Apresentamos os lutadores: " + desafiante.getNome() + "e " + desafiado.getNome());
+			System.out.println("No lado esquerdo, temos: ");
+			desafiante.status();
+			System.out.println(" No lado direito, temos: ");
+			desafiado.status();
+
+			Random random = new Random();
+
+			int aleatorio = random.ints(0, 2).findFirst().getAsInt();
+			if (considerarExpectadores) {
+				juiz.realizarLuta(this, expectadores);
+			} else {
+				juiz.realizarLuta(this);
+			}
+
+			switch (aleatorio) {
+			case 0:
+				if (considerarExpectadores) {
+					System.out.println("Luta empatada e cada um dos lutadores receberam " + (dividirPremio()));
+					System.out.println("A comissão do juíz " + juiz.getNome() + " foi de " + (this.comissaoJuiz()));
+					desafiante.empatarLuta(premioLuta / 2, expectadores);
+					desafiado.empatarLuta(premioLuta / 2, expectadores);
+				} else {
+					System.out.println("Luta empatada e cada um dos lutadores receberam " + (dividirPremio()));
+					System.out.println("A comissão do juíz " + juiz.getNome() + " foi de " + (this.comissaoJuiz()));
+					juiz.setComissaoExtra(calcularJuizExpectadores());
+					desafiante.empatarLuta(premioLuta / 2);
+					desafiado.empatarLuta((premioLuta / 2));
+				}
+				break;
+			case 1:
+				if (considerarExpectadores) {
+					System.out.println("O vencedor é " + desafiante.getNome() + " e recebeu o prêmio de " + (premioLuta));
+					System.out.println("A comissão do juíz " + juiz.getNome() + " foi de "+ (this.comissaoJuiz() + calcularJuizExpectadores()));
+					desafiante.empatarLuta(premioLuta, expectadores);
+					desafiado.empatarLuta(premioLuta, expectadores);
+				} else {
+					System.out.println("O vencedor é " + desafiante.getNome() + " e recebeu o prêmio de " + (premioLuta));
+					System.out.println("A comissão do juíz " + juiz.getNome() + " foi de "+ (this.comissaoJuiz() + calcularJuizExpectadores()));
+					desafiante.ganharLuta(premioLuta);
+					desafiado.perderLuta();
+				}
+				break;
+			case 2:
+				if (considerarExpectadores) {
+					System.out.println("O vencedor é " + desafiado.getNome() + " e recebeu o prêmio de " + (premioLuta));
+					System.out.println("A comissão do juíz " + juiz.getNome() + " foi de " + (this.comissaoJuiz()));
+					desafiante.empatarLuta(premioLuta, expectadores);
+					desafiado.empatarLuta(premioLuta, expectadores);
+				} else {
+					System.out.println("O vencedor é " + desafiado.getNome() + " e recebeu o prêmio de " + (premioLuta));
+					System.out.println("A comissão do juíz " + juiz.getNome() + " foi de " + (this.comissaoJuiz()));
+					desafiado.ganharLuta(premioLuta);
+					desafiante.perderLuta();
+				}
+				break;
+			}
+		} else {
+			System.out.println("Luta não aprovada");
+		}
+	}
+
+	public double comissaoJuiz() {
+		return premioLuta * (comissaoJuiz / 100);
+	}
+
+	public double dividirPremio() {
+
+		double dividirPremio = premioLuta / 2;
+		return dividirPremio;
+	}
+
+	public double getPremioLuta() {
+		return premioLuta;
+	}
+
+	public void setPremioLuta(double premioLuta) {
+		this.premioLuta = premioLuta;
+	}
+
+	public double getComissaoJuiz() {
+		return comissaoJuiz;
+	}
+
+	public void setComissaoJuiz(double comissaoJuiz) {
+		this.comissaoJuiz = comissaoJuiz;
+	}
+
+	public Lutador getDesafiante() {
+		return desafiante;
+	}
+
+	public Lutador getDesafiado() {
+		return desafiado;
+	}
+
+	public int getRounds() {
+		return rounds;
+	}
+
+	public boolean isAprovada() {
+		return aprovada;
+	}
+
+	public Juiz getJuiz() {
+		return juiz;
+	}
+
+	public void setJuiz(Juiz juiz) {
+		this.juiz = juiz;
+	}
+
+	public int getExpectadores() {
+		return expectadores;
+	}
+
+	public void setExpectadores(int expectadores) {
+		this.expectadores = expectadores;
+	}
+
+	public boolean isConsiderarExpectadores() {
+		return considerarExpectadores;
+	}
+
+	public void setConsiderarExpectadores(boolean considerarExpectadores) {
+		this.considerarExpectadores = considerarExpectadores;
+	}
+
+}

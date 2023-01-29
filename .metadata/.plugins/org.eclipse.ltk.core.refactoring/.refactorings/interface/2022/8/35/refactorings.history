@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Exercicio3.Calculo&apos; to &apos;OperacaoMatematica&apos;&#x0D;&#x0A;- Original project: &apos;interface&apos;&#x0D;&#x0A;- Original element: &apos;Exercicio3.Calculo&apos;&#x0D;&#x0A;- Renamed element: &apos;Exercicio3.OperacaoMatematica&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Calculo&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;Exercicio3{Calculo.java[Calculo" matchStrategy="1" name="OperacaoMatematica" qualified="false" references="true" similarDeclarations="false" stamp="1661540461885" textual="false" version="1.0"/>
+</session>

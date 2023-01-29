@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Alura&apos; to &apos;AluraArray&apos;&#x0D;&#x0A;- Original project: &apos;Colecoes&apos;&#x0D;&#x0A;- Original element: &apos;Alura&apos;&#x0D;&#x0A;- Renamed element: &apos;AluraArray&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Alura&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{Alura.java[Alura" matchStrategy="1" name="AluraArray" qualified="false" references="true" similarDeclarations="false" stamp="1660608646231" textual="false" version="1.0"/>
+</session>

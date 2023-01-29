@@ -1,0 +1,20 @@
+package Aula44Exercicio01;
+
+public class Quadrado extends Figura2D implements DimensaoSuperficial {
+	
+	private double lado;
+	
+	@Override
+	public double calcularArea(double lado1, double lado2) {
+		return lado1 * lado2;
+	}
+
+	public double getLado() {
+		return lado;
+	}
+
+	public void setLado(double lado) {
+		this.lado = lado;
+	}
+
+}

@@ -1,0 +1,15 @@
+
+public class PrimeiroComando {
+	
+	public static void main (String[] args) {
+		
+		System.out.println("Ola, mundo!");
+		
+		double nota = 8.5;
+		System.out.println ("A nota é: " + nota);
+		
+		float nota2 = 10.2f;
+		System.out.println("A nota 2 é: %.2f", nota2);
+		
+	}
+}

@@ -1,0 +1,12 @@
+package Aula44Exercicio01;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		Triangulo tri = new Triangulo();
+		tri.setAltura(15);
+		tri.setBase(10);
+		System.out.println(tri.calcularArea());
+	}
+
+}

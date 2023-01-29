@@ -1,0 +1,121 @@
+package com.people.bootcamp.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import com.people.bootcamp.controller.TrailController;
+import com.people.bootcamp.controller.dto.TrailDto;
+import com.people.bootcamp.controller.dto.TrailsDto;
+import com.people.bootcamp.controller.exceptions.NotFoundException;
+import com.people.bootcamp.repository.TrailRepository;
+import com.people.bootcamp.repository.model.ContentModel;
+import com.people.bootcamp.repository.model.TrailModel;
+import com.people.bootcamp.service.domain.Content;
+import com.people.bootcamp.service.domain.TrailNotFoundException;
+
+public class TrailControllerTest {
+
+	TrailService trailService;
+	TrailRepository trailRepository = mock(TrailRepository.class);
+	TrailController trailController;
+
+	@BeforeEach
+	public void init() {
+		this.trailService = new TrailService(trailRepository);
+		this.trailController = new TrailController(trailService);
+	}
+
+	// Primeiro ponto
+	@Test
+	void returnsEmptyWhenListTrailsDoesNotExistInRepository() {
+		List<TrailModel> trail = new ArrayList();
+		when(trailRepository.findAll()).thenReturn(trail);
+	
+		List<TrailsDto> trailsDto = trailController.findAll();
+		assertTrue(trailsDto.isEmpty());
+	}
+
+	// Segundo ponto
+	@Test
+	void returnListTrailWhenIdExistsInRepository() {
+		List<TrailModel> trails = new ArrayList();
+		TrailModel trail1 = new TrailModel(1L, null, "java", "java.com", "java Basico", "java");
+		TrailModel trail2 = new TrailModel(2L, null, "java2", "java.com2", "java Basico2", "java2");
+		TrailModel trail3 = new TrailModel(3L, null, "java3", "java.com3", "java Basico3", "java3");
+		
+		List<ContentModel> contents = new ArrayList();
+		ContentModel content1 = new ContentModel(1L, "nada", "nada", "nada", "nada", "nada");
+		ContentModel content2 = new ContentModel(2L, "nada2", "nada2", "nada2", "nada2", "nada2");
+		contents.add(content1);
+		contents.add(content2);
+		
+		trail2.setContents(contents);
+		trail3.setContents(contents);
+		
+		trails.add(trail1);
+		trails.add(trail2);
+		trails.add(trail3);
+		
+		when(trailRepository.findAll()).thenReturn(trails);
+		List<TrailsDto> trailsDto = trailController.findAll();
+		
+		assertTrue(trailsDto.size() == 3);
+		for (int i = 0; i < trailsDto.size(); i++) {
+			assertTrue(trailsDto.get(i).getId() == i + 1);
+		}
+	}
+	
+	//Terceiro ponto
+	@Test
+	void searchForTrackWithId5AndReturnTrackOfId5WithNoContent() {
+		final Long ID = Long.valueOf(5);
+		List<ContentModel> contents = new ArrayList();
+		Optional<TrailModel> trail = Optional.of(new TrailModel(ID, contents , "java5", "java.com5", "java Basico5", "java5"));
+		when(trailRepository.findById(ID)).thenReturn(trail);
+		TrailDto trailDto = trailController.getById(ID);
+		assertEquals(ID, trailDto.getId());
+		assertTrue(trailDto.getContents().isEmpty());
+		
+	}
+
+	// Quarto ponto
+	@Test
+	void returnTrailWhenIdExistsInRepository() {
+		final Long ID = Long.valueOf(5);
+		
+		ContentModel content1 = new ContentModel(Long.valueOf(1),"java","java.com", "java basico", "javaimagem.com", "java");
+		ContentModel content2 = new ContentModel(Long.valueOf(2),"java2","java.com2", "java basico2", "javaimagem.com2", "java2");
+		List<ContentModel> contents = new ArrayList<ContentModel>();
+		contents.add(content1);
+		contents.add(content2);
+		TrailModel trailContent = new TrailModel();
+		trailContent.setContents(contents);
+		Optional<TrailModel> trail = Optional.ofNullable(trailContent);
+		trail.get().setId(5L);
+		trail.get().setContents(contents);
+		when(trailRepository.findById(ID)).thenReturn(trail);
+		
+		TrailDto trailsDto = trailController.getById(ID);
+	
+		assertTrue(trailsDto.getContents().size() == 2);
+		assertEquals(ID, trailsDto.getId());
+	}
+
+	//Ponto 5
+	@Test
+	void returnsEmptyWhenIdDoesNotExistInRepository() {
+		final Long ID = Long.valueOf(7);
+		when(trailRepository.findById(ID)).thenReturn(Optional.empty());
+		
+		assertThrows(NotFoundException.class, ()-> trailController.getById(ID));
+		
+	}
+}

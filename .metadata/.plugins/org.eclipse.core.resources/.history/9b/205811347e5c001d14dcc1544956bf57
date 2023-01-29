@@ -1,0 +1,25 @@
+package com.people.bootcamp.repository.model;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+@Entity
+@Table(name = "TBL_USER_CONTENT")
+public class UserContentModel {
+
+	@EmbeddedId 
+	private UserContentId id;
+	
+	
+	
+}
+

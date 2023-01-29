@@ -1,0 +1,68 @@
+package aulaslogicas.exercicio06;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class MenuEmpresa {
+
+	private Scanner scanner;
+	private List<Empresa> empresas = new ArrayList<Empresa>();
+	private int escolhaOpcao;
+	private Departamentos empresa;
+
+	public MenuEmpresa(Scanner sc) {
+		this.scanner = sc;
+	}
+
+	public void criarMenuEmpresa() {
+
+		System.out.println("Bem-vinda(o) ao menu empresas!");
+
+		do {
+
+			System.out.println("Por favor, digite uma opção: ");
+			System.out.println("1- criar empresa, 2- vincular departamento, 0- voltar ao menu principal.");
+
+			escolhaOpcao = scanner.nextInt();
+
+			if( escolhaOpcao == 1 ) {
+
+				System.out.println("Digite o nome da empresa: ");
+
+				empresa.setNome(scanner.next());
+				System.out.println("Digite agora o CNPJ: ");
+				empresa.setCnpj(scanner.next());
+
+				empresas.add(empresa);
+
+				continue;
+
+			}
+
+			if(escolhaOpcao == 2) {
+
+				System.out.println("Escolha um departamento: ");
+
+				for(int i = 0; i< empresa.getDepartamentos().size(); i++) {
+
+					empresa = empresa.getDepartamentos().get(i);
+
+					System.out.println((i+1)+ "-"+ empresa.getNome());
+
+				}
+
+			}
+
+			if(escolhaOpcao == 0) {
+
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.criar();
+
+			}
+
+		} while(escolhaOpcao <= 1 && escolhaOpcao >= 0);
+
+	}
+
+}

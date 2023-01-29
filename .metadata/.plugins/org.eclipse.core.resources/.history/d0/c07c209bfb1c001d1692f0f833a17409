@@ -1,0 +1,10 @@
+
+public class AluraArrayList {
+	public static void main(String[] args) {
+		//arrayList é um array dinâmico, permitido ser criado
+		//sem definir quantos elementos ele pode guardar.
+		// pode expandir e diminuir conforme necessita
+		
+		ArrayListi<double> teste = new ArrayList<double>();
+	}
+}

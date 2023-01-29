@@ -1,0 +1,59 @@
+package com.people.bootcamp.controller.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.people.bootcamp.repository.UserContentRepository;
+import com.people.bootcamp.repository.model.UserContentId;
+import com.people.bootcamp.repository.model.UserContentModel;
+import com.people.bootcamp.service.domain.Trail;
+
+public class TrailDto {
+
+	private Long id;
+	private List<ContentDto> contents;
+	private String description;
+	private String iconUrl;
+	private String title;
+	private String trailCode;
+
+	public TrailDto(Trail trail) {
+		this.id = trail.getId();
+		this.description = trail.getDescription();
+		this.iconUrl = trail.getIconUrl();
+		this.title = trail.getTitle();
+		this.trailCode = trail.getTrailCode();
+		contents = new ArrayList<ContentDto>();
+		for (int i = 0; i < trail.getContents().size(); i++) {
+			ContentDto contentDto = new ContentDto(trail.getContents().get(i));
+			this.contents.add(contentDto);
+
+		}
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public List<ContentDto> getContents() {
+		return contents;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getTrailCode() {
+		return trailCode;
+	}
+
+}

@@ -1,0 +1,40 @@
+package com.people.bootcamp.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.people.bootcamp.repository.TrailRepository;
+import com.people.bootcamp.repository.model.TrailModel;
+import com.people.bootcamp.repository.model.UserModel;
+import com.people.bootcamp.service.domain.Trail;
+
+import static org.mockito.Mockito.when;
+
+public class TrailServiceTest {
+
+	TrailRepository trailRepository = mock(TrailRepository.class);
+	TrailService trailService;
+	
+	@BeforeEach
+	public void init() {
+		this.trailService = new TrailService(trailRepository);
+	}
+	
+	@Test
+	void returnTrailWhenIdExistsInRepository() {
+		final Long id = Long.valueOf(1);
+		when(trailRepository.findById(id)).
+		thenReturn(Optional.ofNullable(TrailModel.builder().id(id).build()));
+		Optional<Trail> trail = trailService.findById(id);
+		assertTrue(trail.isPresent());
+		assertEquals(id, trail.get().getId());
+		
+    }
+}

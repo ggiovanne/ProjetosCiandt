@@ -1,0 +1,49 @@
+package com.people.bootcamp.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.people.bootcamp.controller.TrailController;
+import com.people.bootcamp.repository.model.TrailModel;
+import com.people.bootcamp.service.domain.Content;
+import com.people.bootcamp.service.domain.Trail;
+
+public class TrailControllerTest {
+
+	TrailService trailService = mock(TrailService.class);
+	TrailController trailController;
+	
+	@BeforeEach
+	public void init() {
+		this.trailController = new TrailController(trailService);
+	}
+	
+	@Test
+	void returnTrailWhenIdExistsInService() {
+		final Long id = Long.valueOf(1);
+		List<Content> contents = new ArrayList<Content>();
+		Trail trail = new Trail(id, contents, "descricao", "trilha.com", "trilha princial", "trilha");
+		when(trailService.findById(id)).thenReturn(Optional.ofNullable(trail));
+		assertTrue(trail != null);
+		assertEquals(id, trail.getId());
+	}
+
+	@Test
+	void returnsEmptyWhenIdDoesNotExistInService() {
+		final Long id = Long.valueOf(1);
+		Optional<Trail> trail = trailService.findById(id);
+		verify(trailService).findById(id);
+		assertFalse(trail.isPresent());
+	}
+}

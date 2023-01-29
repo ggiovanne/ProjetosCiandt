@@ -1,0 +1,19 @@
+package com.people.bootcamp.service;
+
+import static org.mockito.Mockito.mock;
+import org.junit.jupiter.api.BeforeEach;
+import com.people.bootcamp.repository.ContentRepository;
+import com.people.bootcamp.repository.UserContentRepository;
+
+public class ContentServiceTest {
+
+	ContentRepository contentRepository = mock(ContentRepository.class);
+	UserContentRepository userContentRepository = mock(UserContentRepository.class);
+	ContentService contentService;
+	
+	@BeforeEach
+	void init() {
+		contentService = new ContentService(userContentRepository, contentRepository);
+	}
+}
+	

@@ -1,0 +1,23 @@
+package exercicioZoologico;
+
+public abstract class Humano extends Animais{
+	@Override
+	public void andar() {
+		System.out.println("Andando");
+	}
+
+	@Override
+	public void comer() {
+		System.out.println("Almoçando");
+	}
+
+	@Override
+	public void acordar() {
+		System.out.println("Acordando");
+	}
+		
+	@Override
+	public void emitirSom() {
+		System.out.println("Falando");
+	}
+}

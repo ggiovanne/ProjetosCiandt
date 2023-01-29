@@ -1,0 +1,26 @@
+package Aula44Exercicio01;
+
+public class Piramide extends Figura3D{
+
+	private double aresta;
+	private double altura;
+	private double apotema;
+	private Figura2D base;
+
+	@Override
+	public double calcularArea() {
+		
+		
+		return 
+
+	}
+	
+	@Override
+	public double calcularVolume() {
+		if (base != null) {
+			return base.calcularArea() * altura / 3;
+		}
+		return 0;
+	}
+
+}

@@ -1,0 +1,5 @@
+package aula47a52exer1;
+
+public class OpcaoDigitadaInvalidaException {
+
+}

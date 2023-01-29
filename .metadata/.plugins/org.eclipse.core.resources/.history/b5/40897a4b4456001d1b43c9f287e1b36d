@@ -1,0 +1,153 @@
+package com.people.bootcamp.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import com.people.bootcamp.repository.TrailRepository;
+import com.people.bootcamp.repository.model.ContentModel;
+import com.people.bootcamp.repository.model.TrailModel;
+import com.people.bootcamp.service.domain.Content;
+import com.people.bootcamp.service.domain.Trail;
+
+public class TrailServiceTest {
+
+	TrailRepository trailRepository = mock(TrailRepository.class);
+	TrailService trailService;
+
+	@BeforeEach
+	public void init() {
+		this.trailService = new TrailService(trailRepository);
+	}
+
+	// Primeiro ponto
+	@Test
+	void returnEmptyListForSearchAtRepository() {
+		List<TrailModel> trail = trailEmpty();
+		when(trailRepository.findAll()).thenReturn(trail);
+		List<Trail> trails = trailService.findAll();
+		assertTrue(trails.isEmpty());
+	}
+
+	//Segundo ponto
+	@Test
+	void returnListTrailWhenIdExistsInRepository() {
+		List<TrailModel> trail = trailWithContent();
+		when(trailRepository.findAll()).thenReturn(trail);
+		List<Trail> trails = trailService.findAll();
+		assertFalse(trails.isEmpty());
+		assertTrue(trails.size() == 3);
+		for (int i = 0; i < trail.size(); i++) {
+			assertTrue(trail.get(i).getId() == i + 1);
+		}
+	}
+	
+	//Terceiro ponto
+	@Test
+	void searchForTrackWithId5AndReturnTrackOfId5WithNoContent() {
+		final Long id = Long.valueOf(5);
+		List<ContentModel> contents = new ArrayList();
+		
+		when(trailRepository.findById(id)).thenReturn(Optional.ofNullable(TrailModel.builder().id(id).contents(contents).build()));
+		Optional<Trail> trail = trailService.findById(id);
+		
+		assertTrue(trail.isPresent());
+		assertEquals(id, trail.get().getId());
+		assertTrue(trail.get().getContents().isEmpty());
+	}
+
+	// Quarto ponto
+	@Test
+	void returnTrailWhenIdExistsInRepository() {
+		final Long ID = Long.valueOf(3);
+		
+		ContentModel content1 = new ContentModel(Long.valueOf(1),"java","java.com", "java basico", "javaimagem.com", "java");
+		ContentModel content2 = new ContentModel(Long.valueOf(2),"java2","java.com2", "java basico2", "javaimagem.com2", "java2");
+		List<ContentModel> contents = new ArrayList<ContentModel>();
+		contents.add(content1);
+		contents.add(content2);
+		
+		when(trailRepository.findById(ID)).thenReturn(Optional.of(TrailModel.builder().id(ID).contents(contents).build()));
+		Optional<Trail> trail = trailService.findById(ID);
+	
+		assertTrue(trail.isPresent());
+		assertEquals(ID, trail.get().getId());
+		assertEquals(2, trail.get().getContents().size());
+	}
+
+	//Ponto 5
+	@Test
+	void returnsEmptyWhenIdDoesNotExistInRepository() {
+		final Long id = Long.valueOf(7);
+		when(trailRepository.findById(id)).thenReturn(Optional.empty());
+		Optional<Trail> trail = trailService.findById(id);
+		assertFalse(trail.isPresent());
+		assertTrue(trail.isEmpty());
+	}
+
+	private List<TrailModel> trail() {
+		List<TrailModel> trail = new ArrayList<TrailModel>();
+		List<ContentModel> contents = contents();
+
+		TrailModel trail1 = new TrailModel();
+		trail1.setId(Long.valueOf(1));
+
+		TrailModel trail2 = new TrailModel();
+		trail2.setId(Long.valueOf(2));
+
+		TrailModel trail3 = new TrailModel();
+		trail3.setId(Long.valueOf(3));
+
+		trail.add(trail1);
+		trail.add(trail2);
+		trail.add(trail3);
+		return trail;
+	}
+
+	private List<TrailModel> trailWithContent() {
+		List<TrailModel> trail = new ArrayList<TrailModel>();
+		List<ContentModel> contentsEmpty = new ArrayList<ContentModel>();
+		List<ContentModel> contents = contents();
+
+		TrailModel trail1 = new TrailModel();
+		trail1.setId(Long.valueOf(1));
+		trail1.setContents(contents);
+
+		TrailModel trail2 = new TrailModel();
+		trail2.setId(Long.valueOf(2));
+		trail2.setContents(contents);
+
+		TrailModel trail3 = new TrailModel();
+		trail3.setId(Long.valueOf(3));
+		trail3.setContents(contentsEmpty);
+
+		trail.add(trail1);
+		trail.add(trail2);
+		trail.add(trail3);
+		return trail;
+	}
+
+	private List<ContentModel> contents() {
+		List<ContentModel> contents = new ArrayList<ContentModel>();
+		ContentModel content1 = new ContentModel();
+		ContentModel content2 = new ContentModel();
+		ContentModel content3 = new ContentModel();
+		contents.add(content1);
+		contents.add(content2);
+		contents.add(content3);
+		return contents;
+	}
+
+	private List<TrailModel> trailEmpty() {
+		List<TrailModel> trail = new ArrayList<TrailModel>();
+		return trail;
+	}
+
+}

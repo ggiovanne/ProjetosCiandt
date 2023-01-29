@@ -1,0 +1,42 @@
+package extruturaComposta;
+
+import java.util.ArrayList;
+
+public class Juiz extends Pessoa {
+
+	private double comissao;
+	private int anosExperiencia;
+	private static ArrayList<Juiz> lutasRealizadasJuiz = new ArrayList<Juiz>();
+
+	public Juiz(String nome, String nacionalidade, int idade, double comissao, int anosExperiencia, int lutasRealizadas) {
+		super(nome, nacionalidade, idade);
+		this.comissao = comissao;
+		this.anosExperiencia = anosExperiencia;
+		this.lutasRealizadasJuiz = lutasRealizadasJuiz;
+	}
+
+	public double  mediaComissao() {
+		 double media = this.getComissao() / this.lutasRealizadasJuiz.size();
+		return media;
+	}
+	
+	public double getComissao() {
+		return comissao;
+	}
+
+	public void setComissao(double comissao) {
+		this.comissao = comissao;
+	}
+
+	public int getAnosExperiencia() {
+		return anosExperiencia;
+	}
+
+	public void setAnosExperiencia(int anosExperiencia) {
+		this.anosExperiencia = anosExperiencia;
+	}
+
+	public static ArrayList<Juiz> getLutasRealizadasJuiz() {
+		return lutasRealizadasJuiz;
+	}
+}

@@ -1,0 +1,50 @@
+package extruturaComposta;
+
+public class Juiz extends Pessoa{
+
+	private int anosExperiencia;
+	private int lutasRealizadas;
+	private int altura;
+	private int peso;
+	private int vitoria;
+	private int derrota;
+	private int empate;
+	private int comissao;
+	
+	
+	
+	int[] lutaRealizada = new int [10];
+	
+	public Juiz (String nome, String nacionalidade, int idade, float altura, float peso, int vitoria, int derrota, int empate, int comissao, int anosExperiencia, int lutasRealizadas) {
+		super (nome, nacionalidade, idade);
+		
+		this.anosExperiencia = comissao;
+		this.anosExperiencia = anosExperiencia;
+		this.lutasRealizadas = lutasRealizadas;
+	}
+
+	public int getComissao() {
+		return comissao;
+	}
+
+	public void setComissao(int comissao) {
+		this.comissao = comissao;
+	}
+
+	public int getAnosExperiencia() {
+		return anosExperiencia;
+	}
+
+	public void setAnosExperiencia(int anosExperiencia) {
+		this.anosExperiencia = anosExperiencia;
+	}
+
+	public int getLutasRealizadas() {
+		return lutasRealizadas;
+	}
+
+	public void setLutasRealizadas(int lutasRealizadas) {
+		this.lutasRealizadas = lutasRealizadas;
+	}
+	
+}

@@ -1,0 +1,21 @@
+package Aula44Exercicio01;
+
+public class Circulo extends Figura2D implements  DimensaoSuperficial{
+
+	private double raio;
+	
+	@Override
+	public double calcularArea(double base, double altura) {
+		return base * altura;
+	}
+
+	public double getRaio() {
+		return raio;
+	}
+
+	public void setRaio(double raio) {
+		this.raio = raio;
+	}
+
+	
+}

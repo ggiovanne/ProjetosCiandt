@@ -1,0 +1,21 @@
+package Aula44Exercicio01;
+
+public class Cilindro extends Figura3D implements DimensaoSuperficial, DimensaoVolumetrica {
+
+	public final double PI = 3.14;
+	private double raio;
+	private double altura;
+	
+	
+	@Override
+	public double calcularArea() {
+		return raio * raio * PI;
+	}
+	
+	@Override
+	public double calcularVolume() {
+		return calcularArea() * altura;
+	}
+                                                                                    
+
+}

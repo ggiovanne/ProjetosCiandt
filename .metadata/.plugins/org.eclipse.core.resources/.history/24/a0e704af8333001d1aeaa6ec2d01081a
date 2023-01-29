@@ -1,0 +1,17 @@
+package Aula44Exercicio01;
+
+public class Triangulo extends Figura2D implements  DimensaoSuperficial{
+
+	private double base;
+	private double altura;
+	
+
+	@Override
+	public double calcularArea(double base, double altura) {
+		return base * altura;
+	}
+
+	
+	
+
+}

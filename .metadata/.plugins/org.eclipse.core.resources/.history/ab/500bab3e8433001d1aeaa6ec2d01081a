@@ -1,0 +1,5 @@
+package Aula44Exercicio01;
+
+public class Cubo extends Figura3D{
+
+}

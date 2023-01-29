@@ -1,0 +1,39 @@
+package aulaslogicas.exercicio06;
+
+import java.util.Scanner;
+
+public class MenuPrincipal {
+
+	private int escolhaDoUsuario;
+
+	public void criar() {
+
+		System.out.println("Seja bem-vinda(o), ao menu principal!");
+		Scanner sc = new Scanner(System.in);
+
+		do {
+			System.out.println("Por favor, digite uma opção:");
+			System.out.println("1- empresas, 2- departamentos, 3- funcionários, 0- sair.");
+
+			escolhaDoUsuario = sc.nextInt();
+
+			if(escolhaDoUsuario == 1) {
+
+				MenuEmpresa empresa = new MenuEmpresa(sc);
+				empresa.criarMenuEmpresa();
+
+			}
+
+			if(escolhaDoUsuario == 2) {
+
+				MenuDepartamento menu = new MenuDepartamento(sc);
+				menu.criarDepartamento();
+
+			}
+
+		} while(escolhaDoUsuario != 0);
+
+	}
+	
+
+}

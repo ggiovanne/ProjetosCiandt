@@ -1,0 +1,57 @@
+import java.util.Scanner;
+public class Programa{
+
+	public static void main(String[] args) {
+		Lutador prettyBoy = new Lutador("Pretty Boy", "França", 31, 1.75f, 52f, 11, 2, 1);
+		Lutador putScript = new Lutador("Putscript", "Brasil", 29, 1.68f, 57.8f, 14, 2, 3);
+		Lutador snapShadow = new Lutador("Snapshadow", "EUA", 35, 1.65f, 80.9f, 12, 2, 1);
+		Lutador deadCode = new Lutador("Dead Code", "Australia", 28, 1.93f, 81.6f, 13, 0, 2);
+		Lutador ufoCobol = new Lutador("UFOCobol", "Brasil", 37, 1.70f, 119.3f, 5, 4, 3);
+		Lutador nerdaart = new Lutador("Nerdaart", "EUA", 30, 1.81f, 105.7f, 12, 2, 4);
+
+		Lutador lut[] = { prettyBoy, putScript, snapShadow, deadCode, ufoCobol, nerdaart };
+		System.out.println("Escolha um Lutador: ");
+		for (int i = 0; i < lut.length; i++) {
+
+			System.out.println("["+(i+1) + "] "  + lut[i].getNome());
+		}
+		
+		Scanner sc = new Scanner(System.in);
+		int ler = sc.nextInt();
+		
+		switch (ler) {
+		
+		case 1: 
+			System.out.println("Você escolheu: " );
+			lut[0].status();
+			break;
+			
+		case 2: 
+			System.out.println("Você escolheu: " );
+			lut[1].status();
+			break;	
+			
+		case 3: 
+			System.out.println("Você escolheu: " );
+			lut[2].status();
+			break;
+		case 4: 
+			System.out.println("Você escolheu: " );
+			lut[3].status();
+			break;
+		case 5: 
+			System.out.println("Você escolheu: " );
+			lut[4].status();
+			break;
+		case 6: 
+			System.out.println("Você escolheu: " );
+			break;	
+		default:	
+			System.out.println("opção inválida");
+			break;
+		}
+	
+
+}
+
+}
